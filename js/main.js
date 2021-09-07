@@ -90,9 +90,10 @@ for(var i = 0; i < classStudents.length; i++) {
     // document.getElementById("class").innerHTML += `<li class="name-lastname">${classStudents[i].nome} ${classStudents[i].cognome}</li>`;
 
     document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age"><input class="age__input" type"number"></li></ul>`;
-    document.getElementsByClassName("age__input")[i].setAttribute('value', classStudents[i].età);
+    document.getElementsByClassName("age__input")[i].setAttribute('value', classStudents[i].età + " anni");
     document.getElementsByClassName("age__input")[i].disabled = true;
     // document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${classStudents[i].età}</li></ul>`;
+    document.getElementsByClassName("name-lastname")[i].style.textIndent = `${(i + 1) * 15}px`;
 
 }
 // *
@@ -125,7 +126,7 @@ btnAggiungi.addEventListener("click",
             document.getElementsByClassName("name-lastname__input")[classStudents.length - 1].disabled = true;
             // document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${(classStudents[classStudents.length - 1]).età}</li></ul>`;
             document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age"><input class="age__input" type"number"></li></ul>`;
-            document.getElementsByClassName("age__input")[i].setAttribute('value', (classStudents[classStudents.length - 1]).età);
+            document.getElementsByClassName("age__input")[i].setAttribute('value', (classStudents[classStudents.length - 1]).età + " anni");
             document.getElementsByClassName("age__input")[classStudents.length - 1].disabled = true;
             // reset input
             document.getElementById("name").value = "";
