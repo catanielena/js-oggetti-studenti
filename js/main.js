@@ -19,6 +19,10 @@ function capitalizeWords(str) {
 // *
 // *
 // *
+// *
+// * btn Aggiungi
+// *
+var btnAggiungi = document.getElementById("add");
 // oggetto studente
 var student = {
     'nome': 'Marco',
@@ -36,62 +40,78 @@ var classStudents = [
     {
         'nome': 'Marco',
         'cognome': 'Rossi',
+        'età': '20'
     },
     {
         'nome': 'Maddalena',
         'cognome': 'Modonesi',
+        'età': '25'
     },
     {
         'nome': 'Giacomo',
         'cognome': 'Farina',
+        'età': '18'
     },
     {
         'nome': 'Pierangelo',
         'cognome': 'Filippini',
+        'età': '28'
     },
     {
         'nome': 'Angela',
         'cognome': 'Pozzi',
+        'età': '32'
     },
     {
         'nome': 'Salvatore',
         'cognome': 'Pasquali',
+        'età': '45'
     },
     {
         'nome': 'Vittoria',
         'cognome': 'Scaroni',
+        'età': '22'
     }
 ];
 // Stampa proprietà per ogni studente
 for(var i = 0; i < classStudents.length; i++) {
     // console.log(classStudents[i]);
-    for(var k in classStudents[i]) {
-        console.log(`student ${i + 1} > ${k}: ${classStudents[i][k]}`);
+    document.getElementById("class").innerHTML += `<li class="name-lastname">${classStudents[i].nome} ${classStudents[i].cognome}</li>`;
+    document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${classStudents[i].età}</li></ul>`;
+    // for(var k in classStudents[i]) {
+    //     console.log(`student ${i + 1} > ${k}: ${classStudents[i][k]}`);
+    // }
+}
+// *
+// *
+// *
+// * btn aggiungi evento
+var addStudent = {};
+btnAggiungi.addEventListener("click",
+    function() {
+        // Nuovo studente nome
+        var addStdName = document.getElementById("name").value;
+        // Nuovo studente cognome
+        var addStdLastname = document.getElementById("last-name").value;
+        // Nuovo studente età
+        var addStdAge = parseInt(document.getElementById("age").value);
+        if(!(isNaN(addStdName)) || !(isNaN(addStdLastname))) {
+            document.getElementById("message").innerHTML = "Attenzione! Almeno una delle informazioni inserite non è corretta";
+        } else {
+            document.getElementById("message").innerHTML = "";
+            console.log(addStdName);
+            classStudents[classStudents.length]
+            addStudent["nome"] = capitalizeWords(addStdName);   
+            addStudent["cognome"] = capitalizeWords(addStdLastname);
+            addStudent["età"] = addStdAge;
+            // Aggiungi
+            classStudents.push(addStudent); 
+            document.getElementById("class").innerHTML += `<li class="name-lastname">${(classStudents[classStudents.length - 1]).nome} ${(classStudents[classStudents.length - 1]).cognome}</li>`;
+            document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${(classStudents[classStudents.length - 1]).età}</li></ul>`;
+            // reset input
+            document.getElementById("name").value = "";
+            document.getElementById("last-name").value = "";
+            document.getElementById("age").value = "";
+        }
     }
-}
-// Nuovo studente
-var addStudent = [];
-// Nuovo studente nome
-var addStdName;
-do {
-    addStdName = prompt("Inserisci il nome dello studente");
-} while (!(isNaN(addStdName)));
-console.log(capitalizeWords(addStdName));
-addStudent.push(capitalizeWords(addStdName));
-// Nuovo studente conome
-var addStdLastname;
-do {
-    addStdLastname = prompt("Inserisci il cognome dello studente");
-} while (!(isNaN(addStdLastname)));
-console.log(capitalizeWords(addStdLastname));
-addStudent.push(capitalizeWords(addStdLastname));
-// Nuovo studente età
-var addStdAge;
-while (isNaN(addStdAge)) {
-    addStdAge = parseInt(prompt("Inserisci l'età dello studente"));
-}
-console.log(addStdAge);
-addStudent.push(addStdAge);
-
-classStudents.push(addStudent);
-console.log(classStudents[classStudents.length - 1]);
+);
