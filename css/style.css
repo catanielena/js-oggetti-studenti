@@ -1,0 +1,11 @@
+.btn--assign {
+    display: none;
+}
+
+.open {
+    display: inline-block;
+}
+
+.hide {
+    display: none;
+}

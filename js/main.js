@@ -23,6 +23,14 @@ function capitalizeWords(str) {
 // * btn Aggiungi
 // *
 var btnAggiungi = document.getElementById("add");
+// *
+// * btn modifica
+// *
+var btnModifica = document.getElementById("modify");
+// *
+// * btn assegna
+// *
+var btnAssign = document.getElementById("assign");
 // oggetto studente
 var student = {
     'nome': 'Marco',
@@ -76,11 +84,16 @@ var classStudents = [
 // Stampa proprietà per ogni studente
 for(var i = 0; i < classStudents.length; i++) {
     // console.log(classStudents[i]);
-    document.getElementById("class").innerHTML += `<li class="name-lastname">${classStudents[i].nome} ${classStudents[i].cognome}</li>`;
-    document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${classStudents[i].età}</li></ul>`;
-    // for(var k in classStudents[i]) {
-    //     console.log(`student ${i + 1} > ${k}: ${classStudents[i][k]}`);
-    // }
+    document.getElementById("class").innerHTML += `<li class="name-lastname"><input class="name-lastname__input" type"text"></li>`;
+    document.getElementsByClassName("name-lastname__input")[i].setAttribute('value', `${classStudents[i].nome} ${classStudents[i].cognome}`);
+    document.getElementsByClassName("name-lastname__input")[i].disabled = true;
+    // document.getElementById("class").innerHTML += `<li class="name-lastname">${classStudents[i].nome} ${classStudents[i].cognome}</li>`;
+
+    document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age"><input class="age__input" type"number"></li></ul>`;
+    document.getElementsByClassName("age__input")[i].setAttribute('value', classStudents[i].età);
+    document.getElementsByClassName("age__input")[i].disabled = true;
+    // document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${classStudents[i].età}</li></ul>`;
+
 }
 // *
 // *
@@ -106,12 +119,46 @@ btnAggiungi.addEventListener("click",
             addStudent["età"] = addStdAge;
             // Aggiungi
             classStudents.push(addStudent); 
-            document.getElementById("class").innerHTML += `<li class="name-lastname">${(classStudents[classStudents.length - 1]).nome} ${(classStudents[classStudents.length - 1]).cognome}</li>`;
-            document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${(classStudents[classStudents.length - 1]).età}</li></ul>`;
+            // document.getElementById("class").innerHTML += `<li class="name-lastname">${(classStudents[classStudents.length - 1]).nome} ${(classStudents[classStudents.length - 1]).cognome}</li>`;
+            document.getElementById("class").innerHTML += `<li class="name-lastname"><input class="name-lastname__input" type"text"></li>`;
+            document.getElementsByClassName("name-lastname__input")[i].setAttribute('value', `${(classStudents[classStudents.length - 1]).nome} ${(classStudents[classStudents.length - 1]).cognome}`);
+            document.getElementsByClassName("name-lastname__input")[classStudents.length - 1].disabled = true;
+            // document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age">${(classStudents[classStudents.length - 1]).età}</li></ul>`;
+            document.getElementsByClassName("name-lastname")[i].innerHTML += `<ul><li class="age"><input class="age__input" type"number"></li></ul>`;
+            document.getElementsByClassName("age__input")[i].setAttribute('value', (classStudents[classStudents.length - 1]).età);
+            document.getElementsByClassName("age__input")[classStudents.length - 1].disabled = true;
             // reset input
             document.getElementById("name").value = "";
             document.getElementById("last-name").value = "";
             document.getElementById("age").value = "";
         }
+    }
+);
+// *
+// *
+// *
+// * btn modifica evento
+btnModifica.addEventListener("click",
+    function() {
+        for(var i = 0; i < classStudents.length; i++) {
+            document.getElementsByClassName("name-lastname__input")[i].disabled = false;
+            document.getElementsByClassName("age__input")[i].disabled = false;
+        }
+        btnModifica.classList.add("hide");
+        btnAssign.classList.add("open");
+    }
+);
+// *
+// *
+// *
+// * btn carica modifiche evento
+btnAssign.addEventListener("click",
+    function() {
+        for(var i = 0; i < classStudents.length; i++) {
+            document.getElementsByClassName("name-lastname__input")[i].disabled = true;
+            document.getElementsByClassName("age__input")[i].disabled = true;
+        }
+        btnModifica.classList.remove("hide");true
+        btnAssign.classList.remove("open");
     }
 );
