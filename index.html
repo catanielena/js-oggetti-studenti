@@ -10,12 +10,18 @@
     <body>
         <div class="wrapper">
             <h1>Classe</h1>
-            <button class="btn" id="modify">modifica</button>
-            <button class="btn btn--assign" id="assign">Carica modifiche</button>
-            <ul id="class">
-
+            <!-- class -->
+            <ul  class="wrapper__item" id="class">
             </ul>
-            <div class="form">
+            <!-- class -->
+            <!-- class-bt -->
+            <div class="wrapper__item" id="class-btn">
+                <button class="btn" id="modify">modifica</button>
+                <button class="btn btn--assign" id="assign">Carica modifiche</button>
+            </div>
+            <!-- class-bt -->
+            <!-- form -->
+            <div class="wrapper__item" id="form">
                 <h2>Inserisci nuovo studente</h2>
                 <div class="form__item">
                     <label for="name">Nome</label>
@@ -34,6 +40,8 @@
                     <span id="message"></span>
                 </div>
             </div>
+            <!-- form -->
+
         </div>
         <script src="js/main.js"></script>
     </body>
